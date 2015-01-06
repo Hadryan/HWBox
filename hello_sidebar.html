@@ -2,20 +2,47 @@
 <html ng-app="HWBox">
 	<head>
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	
-<body class="container">
+<body class="container-fluid">
 	
 	
-	<div class="jumbotron">
-		<h1>Hello HWBox!</h1>
-		<p>A Brand New HW Management System...</p>
-	</div>
 	
+	<div id="wrapper" ng-controller="TabController as tab">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" >
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        HWBox Menu
+                    </a>
+                </li>
+                <li ng-class="{ active: tab.isSet(1) }">
+                	<a href="#" ng-click="tab.setTab(1)">Homeworks</a>
+                </li>
+		  		<li ng-class="{ active: tab.isSet(2) }">
+		  			<a href="#" ng-click="tab.setTab(2)">Courses</a>
+		  		</li>
+		  		<li ng-class="{ active: tab.isSet(3) }">
+		  			<a href="#" ng-click="tab.setTab(3)">Add Homework</a>
+		  		</li>
+		  		
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+	
+		
+	
+	<!--
 	<section class="row" ng-controller="TabController as tab"> 
 		<ul class="nav nav-pills">
 		  <li ng-class="{ active: tab.isSet(1) }"><a href="#" ng-click="tab.setTab(1)">Homeworks</a></li>
@@ -23,10 +50,17 @@
 		  <li ng-class="{ active: tab.isSet(3) }"><a href="#" ng-click="tab.setTab(3)">Add Homework</a></li>
 		</ul>
 	
-	<hr />
+	<hr /> -->
+		
 		<!-- HOMEWORKS -->
 		<div class="col-sm-12" ng-controller="HWController as hwCtrl" ng-show="tab.isSet(1)">
 		
+			<div class="jumbotron">
+				<h1> Hello HWBox!</h1>
+				<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+				<p>A Brand New HW Management System...</p>
+			</div>
+	
 			<table class="table table-striped table-bordered table-hover">
 			<thead>
 			  <tr>
@@ -82,6 +116,19 @@
 		<!-- ADD HOMEWORK -->
 		<div class="col-sm-12" ng-controller="addHWController as addHWCtrl" ng-show="tab.isSet(3)">
 		
+			<div class="alert alert-success" role="alert" ng-show="addHWCtrl.added">
+			  <a href="#" class="alert-link">Homework "<strong>{{addHWCtrl.lastAddedName}}</strong>{{"\" is added successfully!"}}</a>
+			</div>
+			<!--<div class="alert alert-info" role="alert">
+			  <a href="#" class="alert-link">...</a>
+			</div>
+			<div class="alert alert-warning" role="alert">
+			  <a href="#" class="alert-link">...</a>
+			</div>
+			<div class="alert alert-danger" role="alert">
+			  <a href="#" class="alert-link">...</a>
+			</div>-->
+		
 			<div class="panel panel-default">
 				<div class="panel-heading"><h3 class="panel-title">HW Preview:</h3></div>
 				<div class="panel-body">
@@ -117,12 +164,20 @@
 		</div>
 		<!-- END OF ADD COURSE-->
 	
-	</section>
-	<!-- END OF TABS SECTION -->
-
-
-
+	</div>
+	<!-- END OF page-content-wrapper -->
+	</div>
+	<!-- END OF .wrapper div with tab controller -->
+	
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
+<script>
+$(document).ready( function(){
+	$("#menu-toggle").click(function(e) {
+    	e.preventDefault();
+   	 $("#wrapper").toggleClass("toggled");
+	});	
+});
+</script>
 </body>
 </html>
