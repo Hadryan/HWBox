@@ -26,6 +26,7 @@
 		
 		app.controller("addHWController", function(){
 			this.newHW = {};
+			this.newHW.dueDate = Date.now();
 			this.added = false;
 			this.lastAddedName = "";
 			
@@ -49,7 +50,7 @@
 			
 			this.editHW = function(hwObj){
 				
-				hwObjects.push(this.newHW);
+				var result = $.grep(myArray, function(e){ return e.id == id; });
 				
 				this.edited = true;
 				this.lastEditedName = this.newHW.hwName;

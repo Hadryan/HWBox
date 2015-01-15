@@ -32,7 +32,6 @@
 		  		<li ng-class="{ active: tab.isSet(3) }">
 		  			<a href="#" ng-click="tab.setTab(3)">Add Homework</a>
 		  		</li>
-		  		
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -86,7 +85,7 @@
 					<a href="#" class="btn btn-danger btn-xs" ng-show="hw.hwDone" ng-click="hwCtrl.markAs(hw, false)"><span class="glyphicon glyphicon-remove"></span> Undone</a>
 					<a href="#" class="btn btn-success btn-xs" ng-hide="hw.hwDone" ng-click="hwCtrl.markAs(hw, true)"><span class="glyphicon glyphicon-ok"></span> Done</a>
 				</td>
-				<td><a href="#" class="btn btn-primary btn-xs" ng-click=""><span class="glyphicon glyphicon-pencil"></span> Edit</a></td>
+				<td><a href="#" class="btn btn-primary btn-xs" ng-click="tab.setTab(4)"><span class="glyphicon glyphicon-pencil"></span> Edit</a></td>
 			  	<td><a href="#" class="btn btn-danger btn-xs" ng-click=""><span class="glyphicon glyphicon-trash"></span> Delete</a></td>
 			  </tr>  
 			</tbody>
@@ -124,8 +123,14 @@
 		<!-- ADD HOMEWORK -->
 		<div class="col-sm-12" ng-controller="addHWController as addHWCtrl" ng-show="tab.isSet(3)">
 		
+			<div class="alert alert-warning" role="alert" ng-show="!addHWForm.$valid">
+			  <a class="alert-link">Form is invalid!</a>
+			  
+			</div>
+			
 			<div class="alert alert-success" role="alert" ng-show="addHWCtrl.added">
 			  <a href="#" class="alert-link">Homework "<strong>{{addHWCtrl.lastAddedName}}</strong>{{"\" is added successfully!"}}</a>
+			  
 			</div>
 			<!--<div class="alert alert-info" role="alert">
 			  <a href="#" class="alert-link">...</a>
@@ -147,7 +152,7 @@
 			</div>
 			
 			<!-- novalidate is for disabling default browser HTML5 validation -->
-			<form name="addHWForm"  ng-submit="addHWCtrl.addHW()" novalidate> 
+			<form name="addHWForm"  ng-submit="addHWForm.$valid && addHWCtrl.addHW()" novalidate> 
 				<div class="form-group">
 					<input type="text" ng-model="addHWCtrl.newHW.hwName" class="form-control" placeholder="Homework Name" required />
 				</div>
@@ -157,7 +162,7 @@
 				</div>
 				
 				 <div class="form-group">
-				 	<input type="text" class="form-control" ng-model="addHWCtrl.newHW.dueDate" placeholder="Due date in UNIX timestamp" required />
+				 	<input type="number" class="form-control" ng-model="addHWCtrl.newHW.dueDate" placeholder="Due date in UNIX timestamp" required />
 				 </div>
 				
 				<div class="checkbox">
@@ -172,7 +177,7 @@
 		</div>
 		<!-- END OF ADD COURSE-->
 		
-		<!-- EDIT HOMEWORK --><!--
+		<!-- EDIT HOMEWORK -->
 		<div class="col-sm-12" ng-controller="editHWController as editHWCtrl" ng-show="tab.isSet(4)">
 		
 			<div class="alert alert-success" role="alert" ng-show="editHWCtrl.edited">
@@ -190,7 +195,7 @@
 			</div>
 			
 			<!-- novalidate is for disabling default browser HTML5 validation -->
-			<!--<form name="editHWForm"  ng-submit="editHWCtrl.editHW()" novalidate> 
+			<form name="editHWForm"  ng-submit="editHWCtrl.editHW()" novalidate> 
 				<div class="form-group">
 					<input type="text" ng-model="editHWCtrl.newHW.hwName" class="form-control" placeholder="Homework Name" required />
 				</div>
