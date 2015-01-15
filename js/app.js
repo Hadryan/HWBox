@@ -56,8 +56,9 @@
 				this.lastEditedName = this.newHW.hwName;
 				this.newHW = {};
 			};
-		})
-	
+		});
+		
+			
 	})();
 	
 	var hwObjects = [
@@ -76,10 +77,10 @@
 
 
 // JQUERY SCRIPTS
-
+/*
 $(document).ready( function(){
 	$("#menu-toggle").click(function(e) {
     	e.preventDefault();
    	 $("#wrapper").toggleClass("toggled");
 	});	
-});
+});*/
