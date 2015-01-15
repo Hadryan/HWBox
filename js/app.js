@@ -4,6 +4,10 @@
 	
 		app.controller("HWController", function(){
 			this.hws = hwObjects;
+			
+			this.markAs = function(object, done){
+				object.hwDone = (done) ?  true : false;
+			}
 		});
 		
 		app.controller("CourseController", function(){
@@ -37,6 +41,21 @@
 			};
 			
 		});
+		
+		app.controller("editHWController", function(){
+			this.HW = {};
+			this.edited = false;
+			this.lastEditedName = "";
+			
+			this.editHW = function(hwObj){
+				
+				hwObjects.push(this.newHW);
+				
+				this.edited = true;
+				this.lastEditedName = this.newHW.hwName;
+				this.newHW = {};
+			};
+		})
 	
 	})();
 	

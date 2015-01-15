@@ -69,6 +69,9 @@
 				<th>HWName</th>
 				<th>HWDescription</th>
 				<th>dueDate</th>
+				<th>Mark as ..</th>
+				<th>Edit</th>
+				<th>Delete</th>
 			  </tr>
 	   		</thead>
 			
@@ -79,7 +82,12 @@
 			  	<td>{{hw.hwName}}</td>
 			  	<td>{{hw.hwDescription}}</td>
 			  	<td>{{hw.dueDate | date: 'dd/MM/y HH:mm'}}</td>
-			  	
+				<td>
+					<a href="#" class="btn btn-danger btn-xs" ng-show="hw.hwDone" ng-click="hwCtrl.markAs(hw, false)"><span class="glyphicon glyphicon-remove"></span> Undone</a>
+					<a href="#" class="btn btn-success btn-xs" ng-hide="hw.hwDone" ng-click="hwCtrl.markAs(hw, true)"><span class="glyphicon glyphicon-ok"></span> Done</a>
+				</td>
+				<td><a href="#" class="btn btn-primary btn-xs" ng-click=""><span class="glyphicon glyphicon-pencil"></span> Edit</a></td>
+			  	<td><a href="#" class="btn btn-danger btn-xs" ng-click=""><span class="glyphicon glyphicon-trash"></span> Delete</a></td>
 			  </tr>  
 			</tbody>
 			</table>
@@ -138,8 +146,8 @@
 				</div>
 			</div>
 			
-			
-			<form name="addHWForm"  ng-submit="addHWCtrl.addHW()">
+			<!-- novalidate is for disabling default browser HTML5 validation -->
+			<form name="addHWForm"  ng-submit="addHWCtrl.addHW()" novalidate> 
 				<div class="form-group">
 					<input type="text" ng-model="addHWCtrl.newHW.hwName" class="form-control" placeholder="Homework Name" required />
 				</div>
@@ -163,6 +171,49 @@
 			</form>
 		</div>
 		<!-- END OF ADD COURSE-->
+		
+		<!-- EDIT HOMEWORK --><!--
+		<div class="col-sm-12" ng-controller="editHWController as editHWCtrl" ng-show="tab.isSet(4)">
+		
+			<div class="alert alert-success" role="alert" ng-show="editHWCtrl.edited">
+			  <a href="#" class="alert-link">Homework "<strong>{{editHWCtrl.lastAddedName}}</strong>{{"\" is added successfully!"}}</a>
+			</div>
+
+		
+			<div class="panel panel-default">
+				<div class="panel-heading"><h3 class="panel-title">HW Preview:</h3></div>
+				<div class="panel-body">
+					<p><strong>Name: </strong>{{ editHWCtrl.newHW.hwName }}</p>
+					<p><strong>Description: </strong>{{ editHWCtrl.newHW.hwDescription }}</p>
+					<p><strong>Due Date: </strong>{{ editHWCtrl.newHW.dueDate | date: 'dd/MM/y HH:mm' }}</p>
+				</div>
+			</div>
+			
+			<!-- novalidate is for disabling default browser HTML5 validation -->
+			<!--<form name="editHWForm"  ng-submit="editHWCtrl.editHW()" novalidate> 
+				<div class="form-group">
+					<input type="text" ng-model="editHWCtrl.newHW.hwName" class="form-control" placeholder="Homework Name" required />
+				</div>
+				
+				<div class="form-group">
+					<textarea class="form-control" ng-model="editHWCtrl.newHW.hwDescription" placeholder="Homework description"></textarea>
+				</div>
+				
+				 <div class="form-group">
+				 	<input type="text" class="form-control" ng-model="editHWCtrl.newHW.dueDate" placeholder="Due date in UNIX timestamp" required />
+				 </div>
+				
+				<div class="checkbox">
+					<label><input type="checkbox" ng-model="editHWCtrl.newHW.hwDone" />Done?</label>
+				
+					<input type="submit" class="pull-right btn btn-default" value="Add!" />
+				</div>
+				
+				<div class="clearfix"></div>
+
+			</form>
+		</div>
+		<!-- END OF EDIT COURSE-->
 	
 	</div>
 	<!-- END OF page-content-wrapper -->
