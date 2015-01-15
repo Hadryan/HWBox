@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="HWBox">
 	<head>
-		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
+		<link rel="stylesheet" type="text/css" href="http://bootswatch.com/paper/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
 		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
@@ -147,7 +148,7 @@
 			  <a href="#" class="alert-link">...</a>
 			</div>-->
 		
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading"><h3 class="panel-title">HW Preview:</h3></div>
 				<div class="panel-body">
 					<p><strong>Name: </strong>{{ addHWCtrl.newHW.hwName }}</p>
@@ -172,9 +173,9 @@
 				
 				<div class="checkbox">
 					<label><input type="checkbox" ng-model="addHWCtrl.newHW.hwDone" />Done?</label>
-				
-					<input type="submit" class="pull-right btn btn-default" value="Add!" />
 				</div>
+				
+				<input type="submit" class="btn btn-primary btn-block" value="Add!" />
 				
 				<div class="clearfix"></div>
 
