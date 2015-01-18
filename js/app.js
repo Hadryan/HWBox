@@ -1,6 +1,7 @@
 (function(){
 	(function(){
-		var app = angular.module('HWBox', []);
+		var app = angular.module('HWBox', ['parse']);
+		
 	
 		app.controller("HWController", function(){
 			this.hws = hwObjects;
@@ -35,8 +36,8 @@
 				//this.newHW.hwDone = (this.newHW.hwDone == "true") ? true : false;
 				
 				hwObjects.push(this.newHW);
+				this.added = pAddHW(this.newHW); //parse method
 				
-				this.added = true;
 				this.lastAddedName = this.newHW.hwName;
 				this.newHW = {};
 			};
@@ -74,6 +75,8 @@
 	];
 	
 })();
+
+
 
 
 // JQUERY SCRIPTS
