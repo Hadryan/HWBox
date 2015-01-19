@@ -21,11 +21,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-book"></span> HWBox</a>
+          <a class="navbar-brand" href="#" ng-click="tab.setTab(0)" >
+	  				<span class="glyphicon glyphicon-book"></span> HWBox
+	  		</a>
         </div>
          <div class="navbar-offcanvas offcanvas">
-          <a class="navmenu-brand" href="#">
-          	<span class="glyphicon glyphicon-book"></span> HWBox</span>
+          <a class="navmenu-brand" href="#" data-toggle="offcanvas" data-target=".navbar-offcanvas" data-canvas="body">
+          	<span class="glyphicon glyphicon-arrow-right"></span> Close Menu</span>
           </a>
           
           <ul class="nav navbar-nav">
@@ -48,11 +50,7 @@
 	  			<a href="#" ng-click="tab.setTab(2)">Courses</a>
 	  		</li>
 	  		
-            <li>
-	  			<a href="#" data-toggle="offcanvas" data-target=".navbar-offcanvas" data-canvas="body">
-	  				<span class="glyphicon glyphicon-arrow-right"></span> Close Menu</span>
-	  			</a>
-	  		</li>
+            
 	  		
           </ul>
         </div><!--/.nav-collapse -->
@@ -63,56 +61,53 @@
 	
 	<div class="container-fluid">
 	
-		<!-- HOMEWORKS -->
-		
-		<div class="col-sm-12 " ng-show="tab.isSet(1)" ng-controller="HWController as hwCtrl" >
+		<!-- DASHBOARD -->
+		<div class="col-sm-12 " ng-show="tab.isSet(0)" ng-controller="HWController as hwCtrl" >
 		
 			<div class="jumbotron">
 				<h1> Hello HWBox!</h1>
 				
 				<p>A Brand New HW Management System...</p>
-				
-				 <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-          </p>
-			</div>
-	
-			<div class="table-responsive">
-			<table class="table table-striped table-bordered table-hover">
-			<thead>
-			  <tr>
-			  	<th>Done?</th>
-			  	<th>objectId</th>
-				<th>HWName</th>
-				<th>HWDescription</th>
-				<th>dueDate</th>
-				<th>Mark as ..</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			  </tr>
-	   		</thead>
 			
-			<tbody>      
-			  <tr ng-repeat="hw in hwCtrl.hws">
-			  	<td ng-class="{ 'text-success': hw.hwDone, 'text-danger': !hw.hwDone }"><span ng-class="{ 'glyphicon glyphicon-ok': hw.hwDone, 'glyphicon glyphicon-remove': !hw.hwDone }"></span></td>
-			  	<td>{{hw.objectId}}</td>
-			  	<td>{{hw.hwName}}</td>
-			  	<td>{{hw.hwDescription}}</td>
-			  	<td>{{hw.dueDate | date: 'dd/MM/y HH:mm'}}</td>
-				<td>
-					<a href="#" class="btn btn-danger btn-xs" ng-show="hw.hwDone" ng-click="hwCtrl.markAs(hw, false)"><span class="glyphicon glyphicon-remove"></span> Undone</a>
-					<a href="#" class="btn btn-success btn-xs" ng-hide="hw.hwDone" ng-click="hwCtrl.markAs(hw, true)"><span class="glyphicon glyphicon-ok"></span> Done</a>
-				</td>
-				<td><a href="#" class="btn btn-primary btn-xs" ng-click="tab.setTab(4)"><span class="glyphicon glyphicon-pencil"></span> Edit</a></td>
-			  	<td><a href="#" class="btn btn-danger btn-xs" ng-click=""><span class="glyphicon glyphicon-trash"></span> Delete</a></td>
-			  </tr>  
-			</tbody>
-			</table>
-			</div><!-- end of table's div -->
+			</div>
+		</div>
+		
+		<!-- END OF DASHBOARD -->
+	
+		<!-- VIEW HOMEWORKS -->
+		
+		<div class="col-sm-12 " ng-show="tab.isSet(1)" ng-controller="HWController as hwCtrl" >
+			
+			<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="hw in hwCtrl.hws">
+			<div class="panel panel-default" ng-class="{ panel-success : hw.hwDone, panel-danger : !hw.hwDone}">
+		 		<div class="panel-heading">
+					<span class="panel-title">{{hw.hwName}} / {{hw.objectId}}</span>
+					<span ng-show="hw.hwDone" class="label label-success pull-right"><span class="glyphicon glyphicon-ok"></span> DONE!</span>
+		 	 		<span ng-show="!hw.hwDone" class="label label-danger pull-right"><span class="glyphicon glyphicon-remove"></span> Undone...</span>
+		  		</div>
+		 	 	<div class="panel-body">
+		 	 		<p><strong>Due Date: </strong>{{ hw.hwDueDate | date: 'dd/MM/y HH:mm' }}</p>
+		 	 		
+		 	 		<p>{{hw.hwDescription}}</p>
+		 	 		<p>
+		 	 			<button type="button" class="btn btn-danger btn-sm" ng-show="hw.hwDone" ng-click="hwCtrl.markAs(hw, false)"><span class="glyphicon glyphicon-remove"></span> Mark as Undone</button>
+		 	 			<button type="button" class="btn btn-success btn-sm" ng-show="!hw.hwDone" ng-click="hwCtrl.markAs(hw, true)"><span class="glyphicon glyphicon-ok"></span> Mark as Done</button>
+		 	 			<span class="btn-group" role="group" aria-label="...">
+						  <button type="button" class="btn btn-default btn-sm" ng-click="tab.setTab(4)><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+						  <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+						</span>
+		 	 		</p>
+		  		</div>
+			</div>
+			</div>
+			</div><!-- end of row -->
+	
+			
 		</div><!-- end of col -->
 		
 		
-		<!-- END OF HOMEWORKS -->
+		<!-- END OF VIEW HOMEWORKS -->
 	
 		<!-- COURSES -->
 		<div class="col-sm-12" ng-controller="CourseController as crsCtrl" ng-show="tab.isSet(2)">
@@ -167,7 +162,7 @@
 				<div class="panel-body">
 					<p><strong>Name: </strong>{{ addHWCtrl.newHW.hwName }}</p>
 					<p><strong>Description: </strong>{{ addHWCtrl.newHW.hwDescription }}</p>
-					<p><strong>Due Date: </strong>{{ addHWCtrl.newHW.dueDate | date: 'dd/MM/y HH:mm' }}</p>
+					<p><strong>Due Date: </strong>{{ addHWCtrl.newHW.hwDueDate | date: 'dd/MM/y HH:mm' }}</p>
 				</div>
 			</div>
 			
@@ -182,7 +177,7 @@
 				</div>
 				
 				 <div class="form-group">
-				 	<input type="number" class="form-control" ng-model="addHWCtrl.newHW.dueDate" placeholder="Due date in UNIX timestamp" required />
+				 	<input type="number" class="form-control" ng-model="addHWCtrl.newHW.hwDueDate" placeholder="Due date in UNIX timestamp" required />
 				 </div>
 				
 				<div class="checkbox">
@@ -195,7 +190,7 @@
 
 			</form>
 		</div>
-		<!-- END OF ADD COURSE-->
+		<!-- END OF ADD HOMEWORK-->
 		
 		<!-- EDIT HOMEWORK -->
 		<div class="col-sm-12" ng-controller="editHWController as editHWCtrl" ng-show="tab.isSet(4)">
@@ -210,7 +205,7 @@
 				<div class="panel-body">
 					<p><strong>Name: </strong>{{ editHWCtrl.newHW.hwName }}</p>
 					<p><strong>Description: </strong>{{ editHWCtrl.newHW.hwDescription }}</p>
-					<p><strong>Due Date: </strong>{{ editHWCtrl.newHW.dueDate | date: 'dd/MM/y HH:mm' }}</p>
+					<p><strong>Due Date: </strong>{{ editHWCtrl.newHW.hwDueDate | date: 'dd/MM/y HH:mm' }}</p>
 				</div>
 			</div>
 			
@@ -225,7 +220,7 @@
 				</div>
 				
 				 <div class="form-group">
-				 	<input type="text" class="form-control" ng-model="editHWCtrl.newHW.dueDate" placeholder="Due date in UNIX timestamp" required />
+				 	<input type="text" class="form-control" ng-model="editHWCtrl.newHW.hwDueDate" placeholder="Due date in UNIX timestamp" required />
 				 </div>
 				
 				<div class="checkbox">
@@ -238,7 +233,7 @@
 
 			</form>
 		</div>
-		<!-- END OF EDIT COURSE-->
+		<!-- END OF EDIT HOMEWORK-->
 	
 		
 

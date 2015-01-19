@@ -75,7 +75,7 @@
 			  	<th>objectId</th>
 				<th>HWName</th>
 				<th>HWDescription</th>
-				<th>dueDate</th>
+				<th>hwDueDate</th>
 				<th>Mark as ..</th>
 				<th>Edit</th>
 				<th>Delete</th>
@@ -88,7 +88,7 @@
 			  	<td>{{hw.objectId}}</td>
 			  	<td>{{hw.hwName}}</td>
 			  	<td>{{hw.hwDescription}}</td>
-			  	<td>{{hw.dueDate | date: 'dd/MM/y HH:mm'}}</td>
+			  	<td>{{hw.hwDueDate | date: 'dd/MM/y HH:mm'}}</td>
 				<td>
 					<a href="#" class="btn btn-danger btn-xs" ng-show="hw.hwDone" ng-click="hwCtrl.markAs(hw, false)"><span class="glyphicon glyphicon-remove"></span> Undone</a>
 					<a href="#" class="btn btn-success btn-xs" ng-hide="hw.hwDone" ng-click="hwCtrl.markAs(hw, true)"><span class="glyphicon glyphicon-ok"></span> Done</a>
@@ -156,7 +156,7 @@
 				<div class="panel-body">
 					<p><strong>Name: </strong>{{ addHWCtrl.newHW.hwName }}</p>
 					<p><strong>Description: </strong>{{ addHWCtrl.newHW.hwDescription }}</p>
-					<p><strong>Due Date: </strong>{{ addHWCtrl.newHW.dueDate | date: 'dd/MM/y HH:mm' }}</p>
+					<p><strong>Due Date: </strong>{{ addHWCtrl.newHW.hwDueDate | date: 'dd/MM/y HH:mm' }}</p>
 				</div>
 			</div>
 			
@@ -171,7 +171,7 @@
 				</div>
 				
 				 <div class="form-group">
-				 	<input type="number" class="form-control" ng-model="addHWCtrl.newHW.dueDate" placeholder="Due date in UNIX timestamp" required />
+				 	<input type="number" class="form-control" ng-model="addHWCtrl.newHW.hwDueDate" placeholder="Due date in UNIX timestamp" required />
 				 </div>
 				
 				<div class="checkbox">
@@ -199,7 +199,7 @@
 				<div class="panel-body">
 					<p><strong>Name: </strong>{{ editHWCtrl.newHW.hwName }}</p>
 					<p><strong>Description: </strong>{{ editHWCtrl.newHW.hwDescription }}</p>
-					<p><strong>Due Date: </strong>{{ editHWCtrl.newHW.dueDate | date: 'dd/MM/y HH:mm' }}</p>
+					<p><strong>Due Date: </strong>{{ editHWCtrl.newHW.hwDueDate | date: 'dd/MM/y HH:mm' }}</p>
 				</div>
 			</div>
 			
@@ -214,7 +214,7 @@
 				</div>
 				
 				 <div class="form-group">
-				 	<input type="text" class="form-control" ng-model="editHWCtrl.newHW.dueDate" placeholder="Due date in UNIX timestamp" required />
+				 	<input type="text" class="form-control" ng-model="editHWCtrl.newHW.hwDueDate" placeholder="Due date in UNIX timestamp" required />
 				 </div>
 				
 				<div class="checkbox">

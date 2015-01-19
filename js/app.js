@@ -2,7 +2,26 @@
 	(function(){
 		var app = angular.module('HWBox', ['parse']);
 		
-		
+		function Homework() {
+			this.hwName = "Unknown";
+			this.hwDescription = "Unknown";
+			this.hwDone = false;
+			this.hwDueDate = Date.now();
+			this.objectId = 0;
+			
+			this.getInfo = function() {
+				return this.color + ' ' + this.type + ' apple';
+			};
+			this.setData = function(objectId, hwName, hwDescription, hwDone, hwDueDate) {
+				this.hwName = hwName;
+				this.hwDescription = hwDescription;
+				this.hwDone = hwDone;
+				this.hwDueDate = hwDueDate;
+				this.objectId = objectId;
+			};
+			
+			//{ hwName: "HW3", hwDescription: "Registration System", hwDone: false, objectId: 55, dueDate: 1288323623006 },
+		}
 	
 		app.controller("HWController", ['$scope', '$http', function ($scope, $http) {
 			
@@ -18,7 +37,7 @@
 		});
 		
 		app.controller("TabController", function(){
-			this.tab = 1;
+			this.tab = 0;
 			this.setTab = function(tabIndex){
 				this.tab = tabIndex;
 			};
@@ -29,7 +48,7 @@
 		
 		app.controller("addHWController", function(){
 			this.newHW = {};
-			this.newHW.dueDate = Date.now();
+			this.newHW.hwDueDate = Date.now();
 			this.added = false;
 			this.lastAddedName = "";
 			
@@ -65,10 +84,10 @@
 	})();
 	
 	var hwObjects = [
-		{ hwName: "HW3", hwDescription: "Registration System", hwDone: false, objectId: 55, dueDate: 1288323623006 },
-		{ hwName: "HW1", hwDescription: "Student System", hwDone: false, objectId: 49, dueDate: 1288345623006 },
-		{ hwName: "HW2", hwDescription: "MovieRentalSystem", hwDone: true, objectId: 51, dueDate: 1288327723006 },
-		{ hwName: "Book VII", hwDescription: "Republic", hwDone: true, objectId: 27, dueDate: 1288428723006 }
+		{ hwName: "HW3", hwDescription: "Registration System", hwDone: false, objectId: 55, hwDueDate: 1288323623006 },
+		{ hwName: "HW1", hwDescription: "Student System", hwDone: false, objectId: 49, hwDueDate: 1288345623006 },
+		{ hwName: "HW2", hwDescription: "MovieRentalSystem", hwDone: true, objectId: 51, hwDueDate: 1288327723006 },
+		{ hwName: "Book VII", hwDescription: "Republic", hwDone: true, objectId: 27, hwDueDate: 1288428723006 }
 	];
 	
 	var crsObjects = [
