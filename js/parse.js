@@ -8,7 +8,7 @@ this.pAddHW = function(newHW) {
 	    
 		var fHomework = Parse.Object.extend("fHomework");
 		var testObject = new fHomework();
-		var success = false;
+		
 		
 		//alert( newHW.hwDone + " " + newHW.hwDescription + " " + newHW.hwName + " " + newHW.hwDueDate );
 		
@@ -20,17 +20,16 @@ this.pAddHW = function(newHW) {
 		
 		testObject.set("hwDueDate", date);
 		
-		  testObject.save(null, {
-		  success: function(object) {
-		     //alert('New object created with objectId');
-		     success = true;
-		  },
-		  error: function(model, error) {
-		   // alert('New object NOT created with objectId: ' + error.message);
-		  }
+		
+		testObject.save(null, {
+			success: function(object) {
+				alert('New object created with objectId');
+			},
+			error: function(model, error) {
+				alert('New object NOT created with objectId: ' + error.message);
+			},
+			wait: true
 		});
-
-	return success;
 };
 		
 

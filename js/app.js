@@ -8,17 +8,27 @@
 			this.hwDone = false;
 			this.hwDueDate = Date.now();
 			this.objectId = 0;
+			this.crsPtr = null;
+			this.userPtr = null;
 			
-			this.getInfo = function() {
-				return this.color + ' ' + this.type + ' apple';
-			};
-			this.setData = function(objectId, hwName, hwDescription, hwDone, hwDueDate) {
+			this.setData = function(objectId, hwName, hwDescription, hwDone, hwDueDate, userPtr, crsPtr) {
 				this.hwName = hwName;
 				this.hwDescription = hwDescription;
 				this.hwDone = hwDone;
 				this.hwDueDate = hwDueDate;
 				this.objectId = objectId;
+				this.userPtr = userPtr;
+				this.crsPtr = crsPtr;
 			};
+			
+			this.insert = function(){
+				
+			};
+			
+			this.markAs = function(done){
+				this.hwDone = (done) ?  true : false;
+			}
+			
 			
 			//{ hwName: "HW3", hwDescription: "Registration System", hwDone: false, objectId: 55, dueDate: 1288323623006 },
 		}
@@ -47,20 +57,10 @@
 		});
 		
 		app.controller("addHWController", function(){
-			this.newHW = {};
-			this.newHW.hwDueDate = Date.now();
-			this.added = false;
-			this.lastAddedName = "";
-			
+			var = new Homework();
+						
 			this.addHW = function(){
-				this.newHW.objectId = Math.floor((Math.random() * 100)); 
-				//this.newHW.hwDone = (this.newHW.hwDone == "true") ? true : false;
 				
-				hwObjects.push(this.newHW);
-				this.added = pAddHW(this.newHW); //parse method
-				
-				this.lastAddedName = this.newHW.hwName;
-				this.newHW = {};
 			};
 			
 		});
