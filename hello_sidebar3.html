@@ -1,70 +1,80 @@
 <!DOCTYPE html>
 <html ng-app="HWBox">
 	<head>
-		<!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
-		<!-- <link rel="stylesheet" type="text/css" href="http://bootswatch.com/paper/bootstrap.min.css"> -->
+		<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> -->
 		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/paper/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
-		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
-		<script type="text/javascript" src="js/app.js"></script>
-		<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.3.min.js"></script>
-		<script type="text/javascript" src="js/parse.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://jasny.github.io/bootstrap/dist/css/jasny-bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="http://jasny.github.io/bootstrap/examples/navbar-offcanvas/navbar-offcanvas.css">
+
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	
-<body class="container-fluid">
+<body style="padding-top:75px" ng-controller="TabController as tab">
 	
-	
-	
-	<div id="wrapper" ng-controller="TabController as tab">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper" >
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                	<a><span class="glyphicon glyphicon-pencil"></span> HWBox</a>
-                    
-                </li>
-                <li ng-class="{ active: tab.isSet(1) }">
-                	<a href="#" ng-click="tab.setTab(1)">Homeworks</a>
-                </li>
-		  		<li ng-class="{ active: tab.isSet(2) }">
-		  			<a href="#" ng-click="tab.setTab(2)">Courses</a>
-		  		</li>
-		  		<li ng-class="{ active: tab.isSet(3) }">
-		  			<a href="#" ng-click="tab.setTab(3)">Add Homework</a>
-		  		</li>
-		  		<li>
-                	<a id="menu-toggle"><span class="glyphicon glyphicon-align-justify"></span> Close Menu</a>
-                </li>
-            </ul>
+	<nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navbar-offcanvas" data-canvas="body">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-book"></span> HWBox</a>
         </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-		<a href="#menu-toggle" class="btn btn-default" id="menu-toggle2" style="position:fixed; left: 10px; z-index:1"><span class="glyphicon glyphicon-align-justify"></span> Menu</a>
-		
-		
-	<!--
-	<section class="row" ng-controller="TabController as tab"> 
-		<ul class="nav nav-pills">
-		  <li ng-class="{ active: tab.isSet(1) }"><a href="#" ng-click="tab.setTab(1)">Homeworks</a></li>
-		  <li ng-class="{ active: tab.isSet(2) }"><a href="#" ng-click="tab.setTab(2)">Courses</a></li>
-		  <li ng-class="{ active: tab.isSet(3) }"><a href="#" ng-click="tab.setTab(3)">Add Homework</a></li>
-		</ul>
+         <div class="navbar-offcanvas offcanvas">
+          <a class="navmenu-brand" href="#">
+          	<span class="glyphicon glyphicon-book"></span> HWBox</span>
+          </a>
+          
+          <ul class="nav navbar-nav">
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Homeworks <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li ng-class="{ active: tab.isSet(1) }"><a href="#" ng-click="tab.setTab(1)">View Homeworks</a></li>
+                <li ng-class="{ active: tab.isSet(3) }"><a href="#" ng-click="tab.setTab(3)">Add Homework</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+            
+	  		<li ng-class="{ active: tab.isSet(2) }">
+	  			<a href="#" ng-click="tab.setTab(2)">Courses</a>
+	  		</li>
+	  		
+            <li>
+	  			<a href="#" data-toggle="offcanvas" data-target=".navbar-offcanvas" data-canvas="body">
+	  				<span class="glyphicon glyphicon-arrow-right"></span> Close Menu</span>
+	  			</a>
+	  		</li>
+	  		
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav><!-- /.navbar -->
+    
+     
 	
-	<hr /> -->
-		
+	<div class="container-fluid">
+	
 		<!-- HOMEWORKS -->
+		
 		<div class="col-sm-12 " ng-show="tab.isSet(1)" ng-controller="HWController as hwCtrl" >
 		
 			<div class="jumbotron">
 				<h1> Hello HWBox!</h1>
 				
 				<p>A Brand New HW Management System...</p>
+				
+				 <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
 			</div>
 	
 			<div class="table-responsive">
@@ -98,8 +108,9 @@
 			  </tr>  
 			</tbody>
 			</table>
-			</div>
-		</div>
+			</div><!-- end of table's div -->
+		</div><!-- end of col -->
+		
 		
 		<!-- END OF HOMEWORKS -->
 	
@@ -229,29 +240,38 @@
 		</div>
 		<!-- END OF EDIT COURSE-->
 	
+		
+
 	</div>
-	<!-- END OF page-content-wrapper -->
-	</div>
-	<!-- END OF .wrapper div with tab controller -->
+	<!-- END OF container div with tab controller -->
 	
-	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.3.min.js"></script>
+<script type="text/javascript" src="js/parse.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="http://jasny.github.io/bootstrap/dist/js/jasny-bootstrap.min.js"></script>
 <script>
 $(document).ready( function(){
 	$("#menu-toggle").click(function(e) {
     	e.preventDefault();
  		$("#wrapper").toggleClass("toggled");
  		$("#menu-toggle2").show();
-		//$(".navbar").show();
 	});	
 	
 	$("#menu-toggle2").click(function(e) {
     	e.preventDefault();
  		$("#wrapper").toggleClass("toggled");
  		$("#menu-toggle2").hide();
- 		//$(".navbar").hide();
 	});	
+	$('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+  
 });
 </script>
+
+
 </body>
 </html>

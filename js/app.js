@@ -2,14 +2,16 @@
 	(function(){
 		var app = angular.module('HWBox', ['parse']);
 		
+		
 	
-		app.controller("HWController", function(){
+		app.controller("HWController", ['$scope', '$http', function ($scope, $http) {
+			
 			this.hws = hwObjects;
 			
 			this.markAs = function(object, done){
 				object.hwDone = (done) ?  true : false;
 			}
-		});
+		}]);
 		
 		app.controller("CourseController", function(){
 			this.crss = crsObjects;

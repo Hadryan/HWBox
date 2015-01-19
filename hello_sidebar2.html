@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="HWBox">
 	<head>
-		<!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
-		<!-- <link rel="stylesheet" type="text/css" href="http://bootswatch.com/paper/bootstrap.min.css"> -->
+		<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> -->
 		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/paper/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/simple-sidebar.css">
-		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/offcanvas.css">
+		<!-- <link rel="stylesheet" type="text/css" href="css/simple-sidebar.css"> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
 		<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.3.min.js"></script>
@@ -14,57 +14,64 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	
-<body class="container-fluid">
+<body style="padding-top:75px">
 	
-	
-	
-	<div id="wrapper" ng-controller="TabController as tab">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper" >
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                	<a><span class="glyphicon glyphicon-pencil"></span> HWBox</a>
-                    
-                </li>
-                <li ng-class="{ active: tab.isSet(1) }">
-                	<a href="#" ng-click="tab.setTab(1)">Homeworks</a>
-                </li>
-		  		<li ng-class="{ active: tab.isSet(2) }">
-		  			<a href="#" ng-click="tab.setTab(2)">Courses</a>
-		  		</li>
-		  		<li ng-class="{ active: tab.isSet(3) }">
-		  			<a href="#" ng-click="tab.setTab(3)">Add Homework</a>
-		  		</li>
-		  		<li>
-                	<a id="menu-toggle"><span class="glyphicon glyphicon-align-justify"></span> Close Menu</a>
-                </li>
-            </ul>
+	<nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="offcanvas" >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand pull-right" href="#"><span class="glyphicon glyphicon-book"></span> HWBox</a>
         </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-		<a href="#menu-toggle" class="btn btn-default" id="menu-toggle2" style="position:fixed; left: 10px; z-index:1"><span class="glyphicon glyphicon-align-justify"></span> Menu</a>
-		
-		
-	<!--
-	<section class="row" ng-controller="TabController as tab"> 
-		<ul class="nav nav-pills">
-		  <li ng-class="{ active: tab.isSet(1) }"><a href="#" ng-click="tab.setTab(1)">Homeworks</a></li>
-		  <li ng-class="{ active: tab.isSet(2) }"><a href="#" ng-click="tab.setTab(2)">Courses</a></li>
-		  <li ng-class="{ active: tab.isSet(3) }"><a href="#" ng-click="tab.setTab(3)">Add Homework</a></li>
-		</ul>
+        <!--<div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div>
+    </nav><!-- /.navbar -->
 	
-	<hr /> -->
+	<div class="container-fluid" ng-controller="TabController as tab">
+	
+       
+	<div class="row-offcanvas row-offcanvas-left">
 		
+		 <div id="sidebar" class="sidebar-offcanvas">
+			  <div class="col-md-12">
+				<h5><span class="glyphicon glyphicon-list"></span> Menu</h5>
+				<ul class="nav nav-pills nav-stacked">
+				        <li ng-class="{ active: tab.isSet(1) }">
+				        	<a href="#" ng-click="tab.setTab(1)">Homeworks</a>
+				        </li>
+				  		<li ng-class="{ active: tab.isSet(2) }">
+				  			<a href="#" ng-click="tab.setTab(2)">Courses</a>
+				  		</li>
+				  		<li ng-class="{ active: tab.isSet(3) }">
+				  			<a href="#" ng-click="tab.setTab(3)">Add Homework</a>
+				  		</li>
+				</ul>
+			  </div>
+  			</div>
+  			
+  		<div id="main">
 		<!-- HOMEWORKS -->
+		
 		<div class="col-sm-12 " ng-show="tab.isSet(1)" ng-controller="HWController as hwCtrl" >
 		
 			<div class="jumbotron">
 				<h1> Hello HWBox!</h1>
 				
 				<p>A Brand New HW Management System...</p>
+				
+				 <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
 			</div>
 	
 			<div class="table-responsive">
@@ -98,8 +105,9 @@
 			  </tr>  
 			</tbody>
 			</table>
-			</div>
-		</div>
+			</div><!-- end of table's div -->
+		</div><!-- end of col -->
+		
 		
 		<!-- END OF HOMEWORKS -->
 	
@@ -229,10 +237,12 @@
 		</div>
 		<!-- END OF EDIT COURSE-->
 	
+		
+	</div><!-- end of main -->
 	</div>
-	<!-- END OF page-content-wrapper -->
+	<!-- END OF row off-canvas -->
 	</div>
-	<!-- END OF .wrapper div with tab controller -->
+	<!-- END OF container div with tab controller -->
 	
 	
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -242,15 +252,17 @@ $(document).ready( function(){
     	e.preventDefault();
  		$("#wrapper").toggleClass("toggled");
  		$("#menu-toggle2").show();
-		//$(".navbar").show();
 	});	
 	
 	$("#menu-toggle2").click(function(e) {
     	e.preventDefault();
  		$("#wrapper").toggleClass("toggled");
  		$("#menu-toggle2").hide();
- 		//$(".navbar").hide();
 	});	
+	$('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+  
 });
 </script>
 </body>
