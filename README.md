@@ -1,4 +1,7 @@
-# HelloAngular
-Beginning to the AngularJS
+# HWBox
+A web application is meant to be used by students to organize their homeworks.
 
-Parse SDK is started to be used
+Built with:
+- AngularJS
+- Bootstrap
+- Parse SDK
